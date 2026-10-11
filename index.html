@@ -61,7 +61,27 @@ for(let i=0;i<24;i++){
  el.style.left=(Math.random()*100)+'%';el.style.animationDuration=(8+Math.random()*10)+'s';el.style.animationDelay=(-Math.random()*16)+'s';el.style.fontSize=(13+Math.random()*24)+'px';scene.appendChild(el);
 }
 for(let i=0;i<12;i++){const el=document.createElement('span');el.className='sparkle';el.textContent='✦';el.style.left=(Math.random()*100)+'%';el.style.top=(Math.random()*100)+'%';el.style.animationDelay=(Math.random()*2)+'s';el.style.fontSize=(10+Math.random()*13)+'px';scene.appendChild(el)}
+function playCuteSound(){
+ // A tiny two-note sparkle sound; no extra audio file is needed.
+ const AudioCtx=window.AudioContext||window.webkitAudioContext;
+ if(!AudioCtx) return;
+ const ctx=new AudioCtx();
+ const now=ctx.currentTime;
+ [[659.25,0],[987.77,0.11]].forEach(([freq,delay])=>{
+   const osc=ctx.createOscillator();
+   const gain=ctx.createGain();
+   osc.type='sine';
+   osc.frequency.setValueAtTime(freq,now+delay);
+   gain.gain.setValueAtTime(0.0001,now+delay);
+   gain.gain.exponentialRampToValueAtTime(0.16,now+delay+0.015);
+   gain.gain.exponentialRampToValueAtTime(0.0001,now+delay+0.28);
+   osc.connect(gain); gain.connect(ctx.destination);
+   osc.start(now+delay); osc.stop(now+delay+0.3);
+ });
+ setTimeout(()=>ctx.close(),700);
+}
 document.getElementById('downloadBtn').addEventListener('click',()=>{
+ playCuteSound();
  document.getElementById('surprise').classList.add('show');
  for(let i=0;i<28;i++){const h=document.createElement('span');h.textContent=symbols[Math.floor(Math.random()*symbols.length)];h.style.cssText=`position:fixed;left:${45+Math.random()*10}%;top:${35+Math.random()*25}%;z-index:10;pointer-events:none;color:${['#ff5ca8','#bd79e9','#ff8ec5'][i%3]};font-size:${16+Math.random()*24}px;transition:transform 1.2s ease-out,opacity 1.2s;`;document.body.appendChild(h);requestAnimationFrame(()=>{h.style.transform=`translate(${(Math.random()-.5)*500}px,${(Math.random()-.5)*550}px) rotate(${Math.random()*220}deg) scale(.4)`;h.style.opacity='0'});setTimeout(()=>h.remove(),1300)}
 });
