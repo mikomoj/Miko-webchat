@@ -1,42 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Download My File</title>
-    <style>
-        /* Button ko achha dikhane ke liye thodi CSS */
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f4f4f9;
-        }
-        .download-btn {
-            display: inline-block;
-            padding: 15px 30px;
-            font-size: 18px;
-            color: white;
-            background-color: #007bff;
-            text-decoration: none;
-            border-radius: 5px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: background 0.2s;
-        }
-        .download-btn:hover {
-            background-color: #0056b3;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#ffb6d5">
+<title>A Little Something for You 💗</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Pacifico&display=swap');
+:root{--pink:#ff5ca8;--deep:#a83f91;--lav:#b9a5ff;--ink:#653d68}
+*{box-sizing:border-box}
+body{margin:0;min-height:100svh;overflow-x:hidden;display:grid;place-items:center;padding:28px 16px;font-family:'DM Sans',sans-serif;color:var(--ink);background:radial-gradient(ellipse at 12% 18%,#fff4fb 0,transparent 34%),radial-gradient(ellipse at 85% 80%,#e9e2ff 0,transparent 38%),linear-gradient(135deg,#ffd5e8,#f8dfff 52%,#dcd8ff);position:relative}
+body:before,body:after{content:"";position:fixed;width:300px;height:300px;border-radius:50%;filter:blur(55px);opacity:.55;z-index:-1;animation:blob 9s ease-in-out infinite alternate}
+body:before{background:#ff9ecb;top:-100px;left:-80px}body:after{background:#a99aff;bottom:-110px;right:-70px;animation-delay:-4s}
+.scene{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.heart{position:absolute;bottom:-50px;color:#fff;opacity:0;animation:floatUp linear infinite;text-shadow:0 5px 18px #e35ba866}
+.sparkle{position:absolute;color:#fff;font-size:18px;animation:twinkle 2s ease-in-out infinite}
+.card{position:relative;z-index:1;width:min(100%,480px);padding:clamp(28px,6vw,48px) clamp(22px,6vw,42px) 34px;text-align:center;border:1px solid #ffffffb8;border-radius:32px;background:linear-gradient(145deg,#ffffffd9,#fff8ffe8);box-shadow:0 28px 80px #a653a52b,inset 0 1px 0 #fff;backdrop-filter:blur(18px);animation:arrive .9s cubic-bezier(.2,.8,.2,1) both}
+.pill{display:inline-flex;align-items:center;gap:7px;padding:8px 13px;border-radius:99px;background:#ffe4f1;color:#c04488;font-size:12px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase}
+.hero-heart{width:105px;height:105px;margin:23px auto 18px;display:grid;place-items:center;border-radius:32px;transform:rotate(-7deg);background:linear-gradient(145deg,#ff8cc3,#ff5ca8 55%,#bd79e9);box-shadow:0 15px 32px #ef68aa4d;animation:heartbeat 2s ease-in-out infinite}
+.hero-heart span{font-size:52px;filter:drop-shadow(0 5px 5px #a63b7840);transform:rotate(7deg)}
+h1{font-family:'Pacifico',cursive;font-size:clamp(30px,7vw,42px);line-height:1.25;font-weight:400;margin:12px 0;color:#a34287}
+.subtitle{font-size:15px;line-height:1.8;color:#8e6a91;margin:0 auto;max-width:330px}
+.divider{display:flex;align-items:center;gap:12px;margin:24px 0 20px;color:#ed91bf;font-size:13px}.divider:before,.divider:after{content:"";height:1px;flex:1;background:linear-gradient(90deg,transparent,#f4b5d4)}.divider:after{transform:rotate(180deg)}
+.download-btn{width:100%;display:flex;align-items:center;justify-content:center;gap:11px;padding:17px 22px;border:0;border-radius:18px;color:white;text-decoration:none;font-size:16px;font-weight:700;letter-spacing:.2px;background:linear-gradient(110deg,#ff65ac,#e45ab6 55%,#ad79e9);box-shadow:0 12px 25px #e65cae42;transition:transform .25s,box-shadow .25s;cursor:pointer;position:relative;overflow:hidden}
+.download-btn:before{content:"";position:absolute;inset:0;transform:translateX(-120%);background:linear-gradient(100deg,transparent,#ffffff65,transparent);transition:transform .65s}
+.download-btn:hover{transform:translateY(-3px);box-shadow:0 17px 30px #e65cae60}.download-btn:hover:before{transform:translateX(120%)}.download-btn:active{transform:scale(.98)}
+.btn-icon{font-size:21px}.tiny-note{margin:14px 0 0;font-size:12px;color:#b18bb1}.footer{margin-top:26px;font-size:12px;color:#bb94b6}.footer span{color:#f06aa9}
+.surprise{display:none;margin-top:20px;padding:17px 15px;border:1px solid #ffd1e7;border-radius:18px;background:#fff0f8;animation:arrive .5s ease both}.surprise.show{display:block}.surprise strong{display:block;font-family:'Pacifico',cursive;font-size:21px;font-weight:400;color:#c04e96;margin-bottom:5px}.surprise p{font-size:13px;line-height:1.65;margin:0;color:#936a91}
+@keyframes floatUp{0%{transform:translateY(0) rotate(0deg) scale(.65);opacity:0}12%{opacity:.8}85%{opacity:.65}100%{transform:translateY(-115vh) rotate(35deg) scale(1.15);opacity:0}}
+@keyframes twinkle{0%,100%{opacity:.35;transform:scale(.75) rotate(0)}50%{opacity:1;transform:scale(1.2) rotate(20deg)}}
+@keyframes heartbeat{0%,100%{transform:rotate(-7deg) scale(1)}12%{transform:rotate(-7deg) scale(1.06)}22%{transform:rotate(-7deg) scale(1)}32%{transform:rotate(-7deg) scale(1.04)}42%{transform:rotate(-7deg) scale(1)}}
+@keyframes arrive{from{opacity:0;transform:translateY(22px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes blob{to{transform:translate(45px,35px) scale(1.16)}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}}
+</style>
 </head>
 <body>
-
-    <!-- Yahan "your-file-name.zip" ki jagah apni uploaded file ka sahi naam daalein -->
-    <a href="Star.pdf" download class="download-btn">
-        📥 Download File
-    </a>
-
+<div class="scene" id="scene" aria-hidden="true"></div>
+<main class="card">
+  <div class="pill">✦ made with a little love ✦</div>
+  <div class="hero-heart" aria-hidden="true"><span>💗</span></div>
+  <h1>A Little Something</h1>
+  <p class="subtitle">A tiny click, a little sparkle, and something special just for you. ✨</p>
+  <div class="divider">♡ &nbsp; just for you &nbsp; ♡</div>
+  <a class="download-btn" id="downloadBtn" href="Star.pdf" download>
+    <span class="btn-icon">♡</span><span>Download Your Surprise</span><span>↓</span>
+  </a>
+  <p class="tiny-note">made with ♡, wrapped in pink</p>
+  <section class="surprise" id="surprise" aria-live="polite">
+    <strong>Yayyy! A little love for you 💕</strong>
+    <p>Your surprise is on its way! May your day be as soft, sweet, and sparkly as this little corner of the internet. ✨</p>
+  </section>
+  <div class="footer">sending you a pocketful of <span>♡ happiness ♡</span></div>
+</main>
+<script>
+const scene=document.getElementById('scene');
+const symbols=['♡','♥','💕','✧','✦'];
+for(let i=0;i<24;i++){
+ const el=document.createElement('span');el.className='heart';el.textContent=symbols[Math.floor(Math.random()*symbols.length)];
+ el.style.left=(Math.random()*100)+'%';el.style.animationDuration=(8+Math.random()*10)+'s';el.style.animationDelay=(-Math.random()*16)+'s';el.style.fontSize=(13+Math.random()*24)+'px';scene.appendChild(el);
+}
+for(let i=0;i<12;i++){const el=document.createElement('span');el.className='sparkle';el.textContent='✦';el.style.left=(Math.random()*100)+'%';el.style.top=(Math.random()*100)+'%';el.style.animationDelay=(Math.random()*2)+'s';el.style.fontSize=(10+Math.random()*13)+'px';scene.appendChild(el)}
+document.getElementById('downloadBtn').addEventListener('click',()=>{
+ document.getElementById('surprise').classList.add('show');
+ for(let i=0;i<28;i++){const h=document.createElement('span');h.textContent=symbols[Math.floor(Math.random()*symbols.length)];h.style.cssText=`position:fixed;left:${45+Math.random()*10}%;top:${35+Math.random()*25}%;z-index:10;pointer-events:none;color:${['#ff5ca8','#bd79e9','#ff8ec5'][i%3]};font-size:${16+Math.random()*24}px;transition:transform 1.2s ease-out,opacity 1.2s;`;document.body.appendChild(h);requestAnimationFrame(()=>{h.style.transform=`translate(${(Math.random()-.5)*500}px,${(Math.random()-.5)*550}px) rotate(${Math.random()*220}deg) scale(.4)`;h.style.opacity='0'});setTimeout(()=>h.remove(),1300)}
+});
+</script>
 </body>
 </html>
